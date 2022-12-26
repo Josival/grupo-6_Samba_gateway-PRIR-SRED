@@ -11,11 +11,10 @@ ________________________________________________________________________________
 |[Matheus Ataide](https://github.com/Matheus-Ataide)| mao3@aluno.ifal.edu.br   | 
 |[Josival Costa](https://github.com/Josival)        | jcs28@aluno.ifal.edu.br  | 
 |[Clara Leão](https://github.com/mariaclaraleao)    | mclan1@aluno.ifal.edu.br | 
-|[Outro Cara ](url)                                 | otoka2023@gmail.com      |
 
 ____________________________________________________________________________________________________________
 
 ### Instalações
-> [Samba]()
+> [Samba](https://github.com/Josival/grupo-6_Samba_gateway-PRIR-SRED/blob/main/Samba.md)
 
 > [Gateway]()
