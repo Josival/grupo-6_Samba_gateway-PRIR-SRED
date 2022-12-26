@@ -46,13 +46,13 @@ $ sudo nano /etc/netplan/00-installer-config.yaml
 network:
     ethernets:
         enp0s3:
-            addresses: [10.9.24.117/24]
-            gateway4: 10.9.24.108
             dhcp4: false 
+	    addresses: [10.9.24.117/24]
+            gateway4: 10.9.24.108
     version: 2
 ```
 > O arquivo ficará dessa forma:
-<img src="/Figuras/Samba/" title="arquivo no sudo nano" width="550" /> 
+<img src="/Figuras/Samba/1.1.png" title="arquivo no sudo nano" width="550" /> 
 
 ```bash
 $ sudo netplan apply
