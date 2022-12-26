@@ -15,22 +15,11 @@ Tabela 1: Exemplo de nomes dos servidores
 |    Nome da VM     |                    NOME                  |
 ----------------------------------------------------------------
 | Gateway (gw)      | gw.grupo6.turma924.ifalara.local	       |
-| Samba-SRV.        | smb.grupo6.turma924.ifalara.local	       |
+| Samba (smb)         | smb.grupo6.turma924.ifalara.local	       |
 | NameServer1 (ns1) | ns1.grupo6.turma924.ifalara.local	       |
 | NameServer2 (ns2) | ns2.grupo6.turma924.ifalara.local	       |
 ----------------------------------------------------------------
 ```
-
-Conferir os nomes das MV conforme a Tabela 1. Editar o nome da máquina
-
-```bash
-$ sudo hostnamectl set-hostname samba-srv
-$ reboot
-```
-<img src="/Figuras/Samba/" title="sudo hostname" width="550" /> 
-
-<img src="/Figuras/Samba/" title="reboot" width="550" /> 
-OBS: após o reboot o nome da máquina aparecerá no prompt do shell
 
 ## Passo-a-passo:
 
@@ -42,12 +31,12 @@ Tabela 2: Definições da rede interna da turma 924
 | rede        | 10.9.24.0      |
 | máscara     | 255.255.255.0  |
 | Gateway     | 10.9.24.108    |
-| Samba-SRV   | 10.9.24.117    |
+| Samba       | 10.9.24.117    |
 | NameServer1 | 10.9.24.121    |
 | NameServer2 | 10.9.24.231    |
 --------------------------------
 ```
-    1. Definir o IP da rede interna para o Samba-SRV
+   1. Definir o IP da rede interna para o Samba-SRV
 
 ```bash
 $ sudo nano /etc/netplan/00-installer-config.yaml
