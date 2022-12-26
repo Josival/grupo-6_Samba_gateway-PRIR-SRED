@@ -261,7 +261,9 @@ $ sudo systemctl restart smbd
 ```
 
    * modifica a pasta /samba/public para acesso a somente usuários do grupo sambashare
-   
+
+    sudo nano /etc/samba/smb.conf
+
 ```
 [public]
    comment = public anonymous access
@@ -277,6 +279,8 @@ $ sudo systemctl restart smbd
    #force create mode = 0777
    #force directory mode = 0777
 ```
+<img src="/Figuras/Samba/" title="config public" width="550" /> 
+
 
     * Crie um usuário do S.O para que possa utilizar o compartilhamento samba:
     * usuário: aluno
@@ -301,6 +305,8 @@ Enter the new value, or press ENTER for the default
 	Other []: 
 Is the information correct? [Y/n] y
 ```
+<img src="/Figuras/Samba/" title="adduser" width="550" /> 
+
     * É necessário vincular o usuário do S.O. ao Serviço Samba. Repita a senha de aluno ou crie uma senha nova somente para acessar o compartilhamento de arquivo. Neste caso repetiremos a senha do usuário aluno
     
 ```bash
@@ -310,8 +316,8 @@ Retype new SMB password:
 Added user aluno.
 
 $ sudo usermod -aG sambashare aluno
-
 ```
+<img src="/Figuras/Samba/" title="sudo user mod" width="550" /> 
     
     * O Samba já está instalado, agora precisamos criar um diretório para compartilhá-lo em rede.
    
@@ -319,14 +325,17 @@ $ sudo usermod -aG sambashare aluno
 $ mkdir /home/<username>/sambashare/
 $ sudo mkdir -p /samba/public
 ```
+<img src="/Figuras/Samba/" title="mkdir" width="550" /> 
+
     * configure as permissões para que qualquer um possa acessar o compartilhamento público.
 
 ```bash
 sudo chown -R nobody:nogroup /samba/public
 sudo chmod -R 0775 /samba/public
 sudo chgrp sambashare /samba/public
-
 ```
+<img src="/Figuras/Samba/" title="sudo ch" width="550" /> 
+
    7. Cliente do compartilhamento:
    
     * Em um máquina com Windows (também pode usar linux os MacOS) digite no Winndows Explorer o endereço IP do servidor samba da seguinte forma:
