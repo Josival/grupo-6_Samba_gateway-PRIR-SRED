@@ -64,6 +64,7 @@ $ sudo netplan apply
 $ ifconfig -a
 ```
 <img src="/Figuras/Samba/1.2.png" title="ifconfig -a" width="550" /> 
+
 ```bash
 $ ping 10.9.24.1
 ```
@@ -83,11 +84,12 @@ $ ssh administrador@10.9.24.117
 ```bash
 $ sudo apt update
 ```
-<img src="/Figuras/Samba/1.5.1.png" title="sudo apt" width="550" />
+<img src="/Figuras/Samba/1.5.1.png" title="sudo apt" width="800" />
+
 ```bash
 $ sudo apt install samba
 ```
-<img src="/Figuras/Samba/1.5.2.png" title="sudo apt" width="550" />
+<img src="/Figuras/Samba/1.5.2.png" title="sudo apt" width="800" />
    
    4. Verfificar se o samba está rodando
 
