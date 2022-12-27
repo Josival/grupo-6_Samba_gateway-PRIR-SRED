@@ -44,14 +44,17 @@ $ sudo nano /etc/netplan/00-installer-config.yaml
 > Iremos configurar este arquivo segundo as configurações reservadas para o nosso grupo:
 ```
 network:
-    ethernets:
-        enp0s3:
-            dhcp4: false 
-	    addresses: [10.9.24.117/24]
-            gateway4: 10.9.24.108
-    version: 2
+  renderer: networkd
+  ethernets:
+    ens160:
+      dhcp4: false
+      addresses: [10.9.24.117/24]
+      gateway4: 10.9.24.108
+      nameservers:
+         addresses:
+           - 10.9.24.1
 ```
-> O arquivo ficará dessa forma:
+> O arquivo ficará dessa forma (Na parte de baixo do arquivo terá o ens192, que servirá como rede interna, que foi determinada/reservada para cada ip do grupo):
 <img src="/Figuras/Samba/1.1.png" title="arquivo no sudo nano" width="550" /> 
 
 ```bash
@@ -60,11 +63,11 @@ $ sudo netplan apply
 ```bash
 $ ifconfig -a
 ```
-<img src="/Figuras/Samba/" title="ifconfig -a" width="550" /> 
+<img src="/Figuras/Samba/1.2.png" title="ifconfig -a" width="550" /> 
 ```bash
 $ ping 10.9.24.1
 ```
-<img src="/Figuras/Samba/" title="ping" width="550" /> 
+<img src="/Figuras/Samba/1.3.png" title="ping" width="550" /> 
 
    2. Na máquina Host faça login via ssh (Use Putty no Windows ou o Terminal no Linux)
 
@@ -73,15 +76,18 @@ Exemplo: $ ssh usuário@ipremoto
 ```bash
 $ ssh administrador@10.9.24.117
 ```
-<img src="/Figuras/Samba/" title="ssh" width="550" /> 
+<img src="/Figuras/Samba/1.4.png" title="ssh" width="550" /> 
 
    3. instalar o servidor samba na MV samba-srv
 
 ```bash
 $ sudo apt update
+```
+<img src="/Figuras/Samba/1.5.1.png" title="sudo apt" width="550" />
+```bash
 $ sudo apt install samba
 ```
-<img src="/Figuras/Samba/" title="sudo apt" width="550" />
+<img src="/Figuras/Samba/1.5.2.png" title="sudo apt" width="550" />
    
    4. Verfificar se o samba está rodando
 
@@ -89,7 +95,7 @@ $ sudo apt install samba
 $ whereis samba
 samba: /usr/sbin/samba /usr/lib/x86_64-linux-gnu/samba /etc/samba /usr/share/samba /usr/share/man/man8/samba.8.gz /usr/share/man/man7/samba.7.gz
 ```
-<img src="/Figuras/Samba/" title="whereis" width="550" />
+<img src="/Figuras/Samba/1.6.png" title="whereis" width="550" />
 
 ```bash
 $ sudo systemctl status smbd
@@ -110,33 +116,32 @@ $ sudo systemctl status smbd
              ├─738 /usr/sbin/smbd --foreground --no-process-group
              └─739 /usr/sbin/smbd --foreground --no-process-group
 ```
-<img src="/Figuras/Samba/" title="systemctl" width="550" />
+<img src="/Figuras/Samba/1.7.png" title="systemctl" width="550" />
 
 ```bash
 $ netstat -an | grep LISTEN
 tcp        0      0 0.0.0.0:445             0.0.0.0:*               LISTEN     
 tcp        0      0 0.0.0.0:139             0.0.0.0:*               LISTEN   
 ```
-<img src="/Figuras/Samba/" title="netstat" width="550" />
+<img src="/Figuras/Samba/1.8.png" title="netstat" width="550" />
 
    5. Faça o backup do arquivo de configuração do samba e cria um arquivo novo somente com os comandos necessários.
     
 ```bash
 $ sudo cp /etc/samba/smb.conf{,.backup}
 ```
-<img src="/Figuras/Samba/" title="sudo cp" width="550" />
 
 ```
 $ ls -la
 -rw-r--r--  1 root root 8942 Mar 22 20:55 smb.conf
 -rw-r--r--  1 root root 8942 Mar 23 01:42 smb.conf.backup
 ```
-<img src="/Figuras/Samba/" title="ls -la" width="550" />
+<img src="/Figuras/Samba/1.9.png" title="ls -la" width="550" />
 
 ```
 $ sudo bash -c 'grep -v -E "^#|^;" /etc/samba/smb.conf.backup | grep . > /etc/samba/smb.conf'
 ```
-<img src="/Figuras/Samba/" title="sudo bash" width="550" />
+<img src="/Figuras/Samba/1.10.png" title="sudo bash" width="550" />
 
 ```bash
 $ sudo nano /etc/samba/smb.conf
@@ -174,7 +179,7 @@ $ sudo nano /etc/samba/smb.conf
    guest ok = no
 ```
 > O arquivo ficará dessa forma:
-<img src="/Figuras/Samba/" title="arquivo no sudo nano" width="550" /> 
+<img src="/Figuras/Samba/1.11.png" title="arquivo no sudo nano" width="550" /> 
 
   
   6. Edite o arquivo de configuração /etc/samba/smb.conf
@@ -241,7 +246,7 @@ $ sudo nano /etc/samba/smb.conf
    force directory mode = 0777
 ```
 > O arquivo ficará dessa forma:
-<img src="/Figuras/Samba/" title="arquivo no sudo nano" width="550" /> 
+<img src="/Figuras/Samba/1.12.png" title="arquivo no sudo nano" width="550" /> 
 
     * Renicie o serviço smbd
     
@@ -268,7 +273,7 @@ $ sudo systemctl restart smbd
    #force create mode = 0777
    #force directory mode = 0777
 ```
-<img src="/Figuras/Samba/" title="config public" width="550" /> 
+<img src="/Figuras/Samba/1.13.png" title="config public" width="550" /> 
 
 
     * Crie um usuário do S.O para que possa utilizar o compartilhamento samba:
@@ -294,7 +299,7 @@ Enter the new value, or press ENTER for the default
 	Other []: 
 Is the information correct? [Y/n] y
 ```
-<img src="/Figuras/Samba/" title="adduser" width="550" /> 
+<img src="/Figuras/Samba/1.14.png" title="adduser" width="550" /> 
 
     * É necessário vincular o usuário do S.O. ao Serviço Samba. Repita a senha de aluno ou crie uma senha nova somente para acessar o compartilhamento de arquivo. Neste caso repetiremos a senha do usuário aluno
     
@@ -306,7 +311,7 @@ Added user aluno.
 
 $ sudo usermod -aG sambashare aluno
 ```
-<img src="/Figuras/Samba/" title="sudo user mod" width="550" /> 
+<img src="/Figuras/Samba/1.15.png" title="sudo user mod" width="550" /> 
     
     * O Samba já está instalado, agora precisamos criar um diretório para compartilhá-lo em rede.
    
@@ -314,7 +319,7 @@ $ sudo usermod -aG sambashare aluno
 $ mkdir /home/<username>/sambashare/
 $ sudo mkdir -p /samba/public
 ```
-<img src="/Figuras/Samba/" title="mkdir" width="550" /> 
+<img src="/Figuras/Samba/1.16.png" title="mkdir" width="550" /> 
 
     * configure as permissões para que qualquer um possa acessar o compartilhamento público.
 
@@ -323,7 +328,7 @@ sudo chown -R nobody:nogroup /samba/public
 sudo chmod -R 0775 /samba/public
 sudo chgrp sambashare /samba/public
 ```
-<img src="/Figuras/Samba/" title="sudo ch" width="550" /> 
+<img src="/Figuras/Samba/1.17.png" title="sudo ch" width="550" /> 
 
    7. Cliente do compartilhamento:
    
