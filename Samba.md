@@ -143,7 +143,6 @@ $ ls -la
 ```
 $ sudo bash -c 'grep -v -E "^#|^;" /etc/samba/smb.conf.backup | grep . > /etc/samba/smb.conf'
 ```
-<img src="/Figuras/Samba/1.10.png" title="sudo bash" width="550" />
 
 ```bash
 $ sudo nano /etc/samba/smb.conf
@@ -181,7 +180,7 @@ $ sudo nano /etc/samba/smb.conf
    guest ok = no
 ```
 > O arquivo ficará dessa forma:
-<img src="/Figuras/Samba/1.11.png" title="arquivo no sudo nano" width="550" /> 
+<img src="/Figuras/Samba/1.10.png" title="arquivo no sudo nano" width="550" /> 
 
   
   6. Edite o arquivo de configuração /etc/samba/smb.conf
@@ -248,7 +247,7 @@ $ sudo nano /etc/samba/smb.conf
    force directory mode = 0777
 ```
 > O arquivo ficará dessa forma:
-<img src="/Figuras/Samba/1.12.png" title="arquivo no sudo nano" width="550" /> 
+<img src="/Figuras/Samba/1.11.png" title="arquivo no sudo nano" width="550" /> 
 
     * Renicie o serviço smbd
     
@@ -275,7 +274,7 @@ $ sudo systemctl restart smbd
    #force create mode = 0777
    #force directory mode = 0777
 ```
-<img src="/Figuras/Samba/1.13.png" title="config public" width="550" /> 
+<img src="/Figuras/Samba/1.12.png" title="config public" width="550" /> 
 
 
     * Crie um usuário do S.O para que possa utilizar o compartilhamento samba:
@@ -301,7 +300,7 @@ Enter the new value, or press ENTER for the default
 	Other []: 
 Is the information correct? [Y/n] y
 ```
-<img src="/Figuras/Samba/1.14.png" title="adduser" width="550" /> 
+<img src="/Figuras/Samba/1.13.png" title="adduser" width="550" /> 
 
     * É necessário vincular o usuário do S.O. ao Serviço Samba. Repita a senha de aluno ou crie uma senha nova somente para acessar o compartilhamento de arquivo. Neste caso repetiremos a senha do usuário aluno
     
@@ -310,18 +309,21 @@ $ sudo smbpasswd -a aluno
 New SMB password:
 Retype new SMB password:
 Added user aluno.
+```
+
+<img src="/Figuras/Samba/1.14.png" title="sudo user mod" width="550" /> 
+
 
 $ sudo usermod -aG sambashare aluno
 ```
-<img src="/Figuras/Samba/1.15.png" title="sudo user mod" width="550" /> 
-    
+
     * O Samba já está instalado, agora precisamos criar um diretório para compartilhá-lo em rede.
    
 ```bash
 $ mkdir /home/<username>/sambashare/
 $ sudo mkdir -p /samba/public
 ```
-<img src="/Figuras/Samba/1.16.png" title="mkdir" width="550" /> 
+<img src="/Figuras/Samba/1.15.png" title="mkdir" width="550" /> 
 
     * configure as permissões para que qualquer um possa acessar o compartilhamento público.
 
@@ -330,7 +332,6 @@ sudo chown -R nobody:nogroup /samba/public
 sudo chmod -R 0775 /samba/public
 sudo chgrp sambashare /samba/public
 ```
-<img src="/Figuras/Samba/1.17.png" title="sudo ch" width="550" /> 
 
    7. Cliente do compartilhamento:
    
