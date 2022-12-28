@@ -15,7 +15,7 @@ Tabela 1: Exemplo de nomes dos servidores
 |    Nome da VM     |                    NOME                  |
 ----------------------------------------------------------------
 | Gateway (gw)      | gw.grupo6.turma924.ifalara.local	       |
-| Samba (smb)         | smb.grupo6.turma924.ifalara.local	       |
+| Samba (smb)       | smb.grupo6.turma924.ifalara.local	       |
 | NameServer1 (ns1) | ns1.grupo6.turma924.ifalara.local	       |
 | NameServer2 (ns2) | ns2.grupo6.turma924.ifalara.local	       |
 ----------------------------------------------------------------
@@ -36,7 +36,7 @@ Tabela 2: Definições da rede interna da turma 924
 | NameServer2 | 10.9.24.231    |
 --------------------------------
 ```
-   1. Definir o IP da rede interna para o Samba-SRV
+### 1. Definir o IP da rede interna para o Samba-SRV
 
 ```bash
 $ sudo nano /etc/netplan/00-installer-config.yaml
@@ -54,12 +54,14 @@ network:
          addresses:
            - 10.9.24.1
 ```
-> O arquivo ficará dessa forma (Na parte de baixo do arquivo terá o ens192, que servirá como rede interna, que foi determinada/reservada para cada ip do grupo):
+> O arquivo ficará dessa forma (Na parte de baixo do arquivo terá o ip para o ens192, que foi designado previamente para o nosso grupo) e servirá como rede interna):
 <img src="/Figuras/Samba/1.1.png" title="arquivo no sudo nano" width="550" /> 
 
+> Para salvar/aplicar as alterações feitas no arquivo, pelo sudo nano, precisamos dar este comando:
 ```bash
 $ sudo netplan apply
 ```
+> Para vermos se as alterações foram realmente feitas, damos este comando:
 ```bash
 $ ifconfig -a
 ```
@@ -70,16 +72,19 @@ $ ping 10.9.24.1
 ```
 <img src="/Figuras/Samba/1.3.png" title="ping" width="550" /> 
 
-   2. Na máquina Host faça login via ssh (Use Putty no Windows ou o Terminal no Linux)
+### 2. Na máquina Host faça login via ssh (Use Putty no Windows ou o Terminal no Linux)
 
 Exemplo: $ ssh usuário@ipremoto
 
+> Iremos dar o SSH para o ip reservado para o Samba
 ```bash
 $ ssh administrador@10.9.24.117
 ```
 <img src="/Figuras/Samba/1.4.png" title="ssh" width="550" /> 
 
-   3. instalar o servidor samba na MV samba-srv
+> Se o SSH não funcionar, pode ser que esteja faltando alguma conexão ser feita, acesse o [Repositório]() que poderá ajudar a resolver os possiveis problemas
+
+### 3. instalar o servidor samba na MV samba-srv
 
 ```bash
 $ sudo apt update
@@ -91,7 +96,7 @@ $ sudo apt install samba
 ```
 <img src="/Figuras/Samba/1.5.2.png" title="sudo apt" width="800" />
    
-   4. Verfificar se o samba está rodando
+### 4. Verfificar se o samba está rodando
 
 ```bash
 $ whereis samba
@@ -127,7 +132,7 @@ tcp        0      0 0.0.0.0:139             0.0.0.0:*               LISTEN
 ```
 <img src="/Figuras/Samba/1.8.png" title="netstat" width="550" />
 
-   5. Faça o backup do arquivo de configuração do samba e cria um arquivo novo somente com os comandos necessários.
+### 5. Faça o backup do arquivo de configuração do samba e cria um arquivo novo somente com os comandos necessários.
     
 ```bash
 $ sudo cp /etc/samba/smb.conf{,.backup}
@@ -183,7 +188,7 @@ $ sudo nano /etc/samba/smb.conf
 <img src="/Figuras/Samba/1.10.png" title="arquivo no sudo nano" width="550" /> 
 
   
-  6. Edite o arquivo de configuração /etc/samba/smb.conf
+ ### 6. Edite o arquivo de configuração /etc/samba/smb.conf
 
 	* adicione as interfaces da sua máquina na linha "interfaces = 127.0.0.1/8 enp0s3", separando os nomes das interfaces por espaços.
   
@@ -333,7 +338,7 @@ sudo chmod -R 0775 /samba/public
 sudo chgrp sambashare /samba/public
 ```
 
-   7. Cliente do compartilhamento:
+### 7. Cliente do compartilhamento:
    
     * Em um máquina com Windows (também pode usar linux os MacOS) digite no Winndows Explorer o endereço IP do servidor samba da seguinte forma:
     **\\ip_do_maquina**. Exemplo: \\10.9.24.124
