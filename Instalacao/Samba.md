@@ -109,21 +109,25 @@ samba: /usr/sbin/samba /usr/lib/x86_64-linux-gnu/samba /etc/samba /usr/share/sam
 ```bash
 $ sudo systemctl status smbd
 ● smbd.service - Samba SMB Daemon
-     Loaded: loaded (/lib/systemd/system/smbd.service; enabled; vendor preset: enabled)
-     Active: active (running) since Mon 2021-03-22 23:07:17 UTC; 1h 26min ago
+     Loaded: loaded (/lib/systemd/system/smbd.service; enabled; vendor preset: >
+     Active: active (running) since Wed 2022-12-07 17:03:10 UTC; 2 weeks 6 days>
        Docs: man:smbd(8)
              man:samba(7)
              man:smb.conf(5)
-    Process: 691 ExecStartPre=/usr/share/samba/update-apparmor-samba-profile (code=exited, status=0/SUCCESS)
-   Main PID: 697 (smbd)
+   Main PID: 45360 (smbd)
      Status: "smbd: ready to serve connections..."
-      Tasks: 4 (limit: 460)
-     Memory: 17.5M
+      Tasks: 4 (limit: 462)
+     Memory: 11.4M
      CGroup: /system.slice/smbd.service
-             ├─697 /usr/sbin/smbd --foreground --no-process-group
-             ├─737 /usr/sbin/smbd --foreground --no-process-group
-             ├─738 /usr/sbin/smbd --foreground --no-process-group
-             └─739 /usr/sbin/smbd --foreground --no-process-group
+             ├─45360 /usr/sbin/smbd --foreground --no-process-group
+             ├─45362 /usr/sbin/smbd --foreground --no-process-group
+             ├─45363 /usr/sbin/smbd --foreground --no-process-group
+             └─45364 /usr/sbin/smbd --foreground --no-process-group
+
+Dec 07 17:03:08 smb.grupo6.turma924.ifalara.local systemd[1]: smbd.service: Suc>
+Dec 07 17:03:08 smb.grupo6.turma924.ifalara.local systemd[1]: Stopped Samba SMB>
+Dec 07 17:03:08 smb.grupo6.turma924.ifalara.local systemd[1]: Starting Samba SM>
+Dec 07 17:03:10 smb.grupo6.turma924.ifalara.local systemd[1]: Started Samba SMB
 ```
 <img src="/Figuras/Samba/1.7.png" title="systemctl" width="1000" />
 
@@ -140,12 +144,18 @@ tcp        0      0 0.0.0.0:139             0.0.0.0:*               LISTEN
 $ sudo cp /etc/samba/smb.conf{,.backup}
 ```
 
+> Acesse o diretório "/etc/samba/" com o comando:
+
+	cd ./etc/samba/
+
 ```
 $ ls -la
 -rw-r--r--  1 root root 8942 Mar 22 20:55 smb.conf
 -rw-r--r--  1 root root 8942 Mar 23 01:42 smb.conf.backup
 ```
-<img src="/Figuras/Samba/1.9.png" title="ls -la" width="550" />
+<img src="/Figuras/Samba/1.9..png" title="ls -la" width="550" />
+
+> Comando para remover comentários desnecessários do arquivo:
 
 ```
 $ sudo bash -c 'grep -v -E "^#|^;" /etc/samba/smb.conf.backup | grep . > /etc/samba/smb.conf'
