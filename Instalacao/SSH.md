@@ -64,4 +64,4 @@ openvpn3 session-manage --path <Você irá colocar aqui o path da sessão que vo
 
 ### > Passo 3
 
-> Faça o teste agora com o SSH, para ver se irá funcionar. Se mesmo assim não funcionar, deve ser algum bug do servidor. Então, você irá dar o comando SSH com outro ip que funcione, ao entrar neste ip, ai sim você irá fazer o ssh com o ip que estava querendo entrar.
+> Faça o teste agora com o SSH para ver se irá funcionar. Se mesmo assim não funcionar deve ser algum bug do servidor. Então, você irá dar o comando SSH com outro ip que funcione, ao entrar neste ip, ai sim você irá fazer o ssh com o ip que estava querendo entrar.
