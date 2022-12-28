@@ -1,6 +1,6 @@
 # Solução de Possíveis Problemas com o SSH
 
-Se ao fazer um SSH para um ip e não funcionar, e você não fez nenhuma figuração/conexão do OpenVPN 3 antes, você deve ir para este [Repositório](https://github.com/alaelson/2022-924-notasdeaula/blob/main/Aula.924-2022.11.04.md). Mas se você já tinha feito anteriormente as configurações, e mesmo assim não está funcionando você deve realizar esses passos de verificação (Utilizaremos a instalações designadas para a turma 924):
+Se ao fazer um SSH para um ip e não funcionar, e você não fez nenhuma configuração/conexão do OpenVPN 3 anteriormente, você deve ir para este [Repositório](https://github.com/alaelson/2022-924-notasdeaula/blob/main/Aula.924-2022.11.04.md). Mas se você já tinha feito anteriormente as configurações, e mesmo assim não está funcionando você deve realizar esses passos de verificação (Utilizaremos a instalações designadas para a turma 924):
 
 ### > Passo 1
 
