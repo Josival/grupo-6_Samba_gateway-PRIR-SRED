@@ -82,19 +82,19 @@ $ ssh administrador@10.9.24.117
 ```
 <img src="/Figuras/Samba/1.4.png" title="ssh" width="550" /> 
 
-> Se o SSH não funcionar, pode ser que esteja faltando alguma conexão ser feita, acesse o [Repositório]() que poderá ajudar a resolver os possiveis problemas
+> Se o SSH não funcionar, pode ser que esteja faltando alguma conexão ser feita, acesse o [Repositório](https://github.com/Josival/grupo-6_Samba_gateway-PRIR-SRED/blob/main/Instalacao/SSH.md) que poderá ajudar a resolver os possiveis problemas
 
 ### 3. instalar o servidor samba na MV samba-srv
 
 ```bash
 $ sudo apt update
 ```
-<img src="/Figuras/Samba/1.5.1.png" title="sudo apt" width="800" />
+<img src="/Figuras/Samba/1.5.1.png" title="sudo apt" width="1000" />
 
 ```bash
 $ sudo apt install samba
 ```
-<img src="/Figuras/Samba/1.5.2.png" title="sudo apt" width="800" />
+<img src="/Figuras/Samba/1.5.2.png" title="sudo apt" width="1000" />
    
 ### 4. Verfificar se o samba está rodando
 
@@ -123,7 +123,7 @@ $ sudo systemctl status smbd
              ├─738 /usr/sbin/smbd --foreground --no-process-group
              └─739 /usr/sbin/smbd --foreground --no-process-group
 ```
-<img src="/Figuras/Samba/1.7.png" title="systemctl" width="550" />
+<img src="/Figuras/Samba/1.7.png" title="systemctl" width="1000" />
 
 ```bash
 $ netstat -an | grep LISTEN
@@ -185,7 +185,7 @@ $ sudo nano /etc/samba/smb.conf
    guest ok = no
 ```
 > O arquivo ficará dessa forma:
-<img src="/Figuras/Samba/1.10.png" title="arquivo no sudo nano" width="550" /> 
+<img src="/Figuras/Samba/1.10.png" title="arquivo no sudo nano" width="800" /> 
 
   
  ### 6. Edite o arquivo de configuração /etc/samba/smb.conf
@@ -252,7 +252,7 @@ $ sudo nano /etc/samba/smb.conf
    force directory mode = 0777
 ```
 > O arquivo ficará dessa forma:
-<img src="/Figuras/Samba/1.11.png" title="arquivo no sudo nano" width="550" /> 
+<img src="/Figuras/Samba/1.11.png" title="arquivo no sudo nano" width="1000" /> 
 
     * Renicie o serviço smbd
     
@@ -279,7 +279,7 @@ $ sudo systemctl restart smbd
    #force create mode = 0777
    #force directory mode = 0777
 ```
-<img src="/Figuras/Samba/1.12.png" title="config public" width="550" /> 
+<img src="/Figuras/Samba/1.12.png" title="config public" width="1000" /> 
 
 
     * Crie um usuário do S.O para que possa utilizar o compartilhamento samba:
