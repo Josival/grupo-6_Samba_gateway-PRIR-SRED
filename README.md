@@ -15,6 +15,6 @@ ________________________________________________________________________________
 ____________________________________________________________________________________________________________
 
 ### Instalações
-> [Samba](https://github.com/Josival/grupo-6_Samba_gateway-PRIR-SRED/blob/main/Samba.md)
+> [Samba](https://github.com/Josival/grupo-6_Samba_gateway-PRIR-SRED/blob/main/Instalacao/Samba.md)
 
 > [Gateway]()
