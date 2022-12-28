@@ -329,9 +329,8 @@ $ sudo usermod -aG sambashare aluno
 $ mkdir sambashare
 $ sudo mkdir -p /samba/public
 ```
-<img src="/Figuras/Samba/1.15.png" title="mkdir" width="550" /> 
 
-    * configure as permissões para que qualquer um possa acessar o compartilhamento público.
+    * Configure as permissões para que qualquer um possa acessar o compartilhamento público.
 
 ```bash
 sudo chown -R nobody:nogroup /samba/public
