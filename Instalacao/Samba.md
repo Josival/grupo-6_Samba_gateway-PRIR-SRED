@@ -318,14 +318,13 @@ Added user aluno.
 
 <img src="/Figuras/Samba/1.14.png" title="sudo user mod" width="550" /> 
 
-
+```bash
 $ sudo usermod -aG sambashare aluno
 ```
-
     * O Samba já está instalado, agora precisamos criar um diretório para compartilhá-lo em rede.
    
 ```bash
-$ mkdir /home/<username>/sambashare/
+$ mkdir sambashare
 $ sudo mkdir -p /samba/public
 ```
 <img src="/Figuras/Samba/1.15.png" title="mkdir" width="550" /> 
