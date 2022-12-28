@@ -7,6 +7,8 @@
 
 https://ubuntu.com/tutorials/install-and-configure-samba#3-setting-up-samba
 
+https://www.youtube.com/watch?v=uryVhhgTn9g
+
 ## Nome da máquina
 
 ```
