@@ -94,8 +94,8 @@ $ sudo apt update
 ```bash
 $ sudo apt install samba
 ```
-<img src="/Figuras/Samba/1.5.2.png" title="sudo apt" width="1000" />
-   
+<img src="/Figuras/Samba/1.5.2..png" title="sudo apt" width="600" />
+  
 ### 4. Verfificar se o samba está rodando
 
 ```bash
