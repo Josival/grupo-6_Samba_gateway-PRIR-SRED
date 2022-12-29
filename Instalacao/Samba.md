@@ -13,30 +13,30 @@ https://www.youtube.com/watch?v=uryVhhgTn9g
 
 ```
 Tabela 1: Exemplo de nomes dos servidores
-----------------------------------------------------------------
-|    Nome da VM     |                    NOME                  |
-----------------------------------------------------------------
-| Gateway (gw)      | gw.grupo6.turma924.ifalara.local	       |
-| Samba (smb)       | smb.grupo6.turma924.ifalara.local	       |
-| NameServer1 (ns1) | ns1.grupo6.turma924.ifalara.local	       |
-| NameServer2 (ns2) | ns2.grupo6.turma924.ifalara.local	       |
-----------------------------------------------------------------
+---------------------------------------------------------
+|    Nome da VM     |                NOME               |
+---------------------------------------------------------
+| Gateway (gw)      | gw.grupo6.turma924.ifalara.local	|
+| Samba (smb)       | smb.grupo6.turma924.ifalara.local	|
+| NameServer1 (ns1) | ns1.grupo6.turma924.ifalara.local	|
+| NameServer2 (ns2) | ns2.grupo6.turma924.ifalara.local	|
+---------------------------------------------------------
 ```
 
 ## Passo-a-passo:
 
 ```
 Tabela 2: Definições da rede interna da turma 924
---------------------------------
-|  DESCRICAO  |  IP            |
---------------------------------
-| rede        | 10.9.24.0      |
-| máscara     | 255.255.255.0  |
-| Gateway     | 10.9.24.108    |
-| Samba       | 10.9.24.117    |
-| NameServer1 | 10.9.24.121    |
-| NameServer2 | 10.9.24.231    |
---------------------------------
+-----------------------------------------------
+|  DESCRICAO  |  IP / ens160  |  IP / ens192  |
+-----------------------------------------------
+| rede        | 10.9.24.0     | 192.168.24.80 |
+| máscara     | 255.255.255.0 | 255.255.255.0 |
+| Gateway     | 10.9.24.108   | 192.168.24.89 |
+| Samba       | 10.9.24.117   | 192.168.24.90 |
+| NameServer1 | 10.9.24.121   | 192.168.24.91 |
+| NameServer2 | 10.9.24.231   | 192.168.24.92 |
+-----------------------------------------------
 ```
 ### 1. Definir o IP da rede interna para o Samba-SRV
 
