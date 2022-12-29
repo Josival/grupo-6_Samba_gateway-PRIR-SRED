@@ -38,7 +38,19 @@ Tabela 2: Definições da rede interna da turma 924
 | NameServer2 | 10.9.24.231   | 192.168.24.92 |
 -----------------------------------------------
 ```
-### 1. Definir o IP da rede interna para o Samba-SRV
+### 1. Na máquina Host faça login via ssh (Use Putty no Windows ou o Terminal no Linux)
+
+Exemplo: $ ssh usuário@ipremoto
+
+> Iremos dar o SSH para o ip reservado para o Samba
+```bash
+$ ssh administrador@10.9.24.117
+```
+<img src="/Figuras/Samba/1.4.png" title="ssh" width="550" /> 
+
+> Se o SSH não funcionar, pode ser que esteja faltando alguma conexão ser feita, acesse o [Repositório](https://github.com/Josival/grupo-6_Samba_gateway-PRIR-SRED/blob/main/Instalacao/SSH.md) que poderá ajudar a resolver os possiveis problemas
+
+### 2. Definir o IP da rede interna para o Samba-SRV
 
 ```bash
 $ sudo nano /etc/netplan/00-installer-config.yaml
@@ -73,18 +85,6 @@ $ ifconfig -a
 $ ping 10.9.24.1
 ```
 <img src="/Figuras/Samba/1.3.png" title="ping" width="550" /> 
-
-### 2. Na máquina Host faça login via ssh (Use Putty no Windows ou o Terminal no Linux)
-
-Exemplo: $ ssh usuário@ipremoto
-
-> Iremos dar o SSH para o ip reservado para o Samba
-```bash
-$ ssh administrador@10.9.24.117
-```
-<img src="/Figuras/Samba/1.4.png" title="ssh" width="550" /> 
-
-> Se o SSH não funcionar, pode ser que esteja faltando alguma conexão ser feita, acesse o [Repositório](https://github.com/Josival/grupo-6_Samba_gateway-PRIR-SRED/blob/main/Instalacao/SSH.md) que poderá ajudar a resolver os possiveis problemas
 
 ### 3. instalar o servidor samba na MV samba-srv
 
