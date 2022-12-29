@@ -56,7 +56,7 @@ network:
          addresses:
            - 10.9.24.1
 ```
-> O arquivo ficará dessa forma (Na parte de baixo do arquivo terá o ip para o ens192, que foi designado previamente para o nosso grupo) e servirá como rede interna):
+> O arquivo ficará dessa forma (Na parte de baixo do arquivo terá o ip para a interface de rede ens192, que foi designado previamente para o nosso grupo) e servirá como rede interna):
 <img src="/Figuras/Samba/1.1..png" title="arquivo no sudo nano" width="550" /> 
 
 > Para salvar/aplicar as alterações feitas no arquivo, pelo sudo nano, precisamos dar este comando:
