@@ -351,7 +351,7 @@ sudo chgrp sambashare /samba/public
 ### 7. Cliente do compartilhamento:
    
     * Em um máquina com Windows (também pode usar linux os MacOS) digite no Winndows Explorer o endereço IP do servidor samba da seguinte forma:
-    **\\ip_do_maquina**. Exemplo: \\10.9.24.124
+    **\\ip_do_maquina**. Exemplo: smb://10.9.24.117/
     
    <p><center> Figura 1: Tela do Arquivos do Ubuntu para conectar com o servidor.</center></p>   
    <img src="/Figuras/Samba/1.15.png" alt="acesso pelo cliente samba"
