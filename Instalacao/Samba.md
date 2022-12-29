@@ -91,7 +91,7 @@ $ ping 10.9.24.1
 ```bash
 $ sudo apt update
 ```
-<img src="/Figuras/Samba/1.5.1.png" title="sudo apt" width="1000" />
+<img src="/Figuras/Samba/1.5.1..png" title="sudo apt" width="1000" />
 
 ```bash
 $ sudo apt install samba
@@ -353,8 +353,8 @@ sudo chgrp sambashare /samba/public
     * Em um máquina com Windows (também pode usar linux os MacOS) digite no Winndows Explorer o endereço IP do servidor samba da seguinte forma:
     **\\ip_do_maquina**. Exemplo: \\10.9.24.124
     
-   <p><center> Figura 1: Tela do Windows Explorer com o acesso ao recurso compartilhado.</center></p>   
-   <img src="cliente_samba.png" alt="acesso pelo cliente samba"
+   <p><center> Figura 1: Tela do Arquivos do Ubuntu para conectar com o servidor.</center></p>   
+   <img src="/Figuras/Samba/1.15.png" alt="acesso pelo cliente samba"
 	title="Figura 1: acesso pelo cliente samba" width="800" height="540" /> 
 
 
