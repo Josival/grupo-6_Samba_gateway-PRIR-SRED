@@ -215,7 +215,7 @@ $ sudo nano /etc/samba/smb.conf
    netbios name = samba-srv
    security = user
    server string = %h server (Samba, Ubuntu)
-   interfaces = 127.0.0.1/8 enp0s3
+   interfaces = 127.0.0.1/8 ens160 ens192
    bind interfaces only = yes
    log file = /var/log/samba/log.%m
    max log size = 1000
