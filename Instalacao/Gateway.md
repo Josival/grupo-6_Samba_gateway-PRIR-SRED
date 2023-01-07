@@ -151,7 +151,7 @@ $ sudo nano /etc/netplan/50-cloud-init.yaml
 network:
     ethernets:
         enp0s3:
-            addresses: [10.0.0.11/24]
+            addresses: [10.9.24.108/24]
             gateway4: 10.9.24.1
             dhcp4: false
             nameservers:
