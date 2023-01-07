@@ -61,16 +61,8 @@ net/ipv4/ip_forwarding=1
 ...
 ```
 
-   3. confira o nome das interfaces de rede
-```bash
-$ ifconfig -a
-```
-```
-WAN interface: enp0s3 
-LAN interface: enp0s8
-```
 
-   4. Configurar as interfaces de rede (netplan) 
+   3. Configurar as interfaces de rede (netplan) 
 
 ```bash
 $ sudo nano /etc/netplan/50-cloud-init.yaml 
@@ -82,7 +74,7 @@ network:
         enp0s3:
             dhcp4: true
         enp0s8:
-            addresses: [10.0.0.1/24]
+            addresses: [10.9.24.1/24]
             dhcp4: false              
     version: 2
 ```
@@ -92,12 +84,12 @@ $ sudo netplan apply
 $ ifconfig -a
 ```
 
-   5. no ubuntu 18.04 o arquivo /etc/rc.local não existe mais. Então é necessário recriá-lo.
+   4. Crie o arquivo /etc/rc.local.
 ```bash
 $ sudo nano /etc/rc.local
 ```
 
-   6. A seguir, adicione o seguinte script no arquivo [/etc/rc.local](rc.local)
+   5. Adicione o script abaixo no arquivo [/etc/rc.local](rc.local)
 
 ---
 ```bash
@@ -138,24 +130,20 @@ iptables -t nat -A POSTROUTING -o enp0s3 -j MASQUERADE
 exit 0
 ```
 ---
-   7. converte o arquivo em executável e o torna inicializável no boot
+   6. converte o arquivo em executável e o torna inicializável no boot
 ```bash
 $ sudo chmod 755 /etc/rc.local
 ```
-   8. verificar se o firewall está funcionando
+   7. verificar se o firewall está funcionando
 ```bash
 $ sudo ufw status
 ```
-ou
-```bash
-$ systemctl status ufw.service
-```
 
-   9.  reiniciar a máquina
+   8.  reiniciar a máquina
 ```bash
 $ sudo reboot
 ```
-   10. Nas máquinas SAMBA, NS1 e NS2 ativar o gateway (gateway4: 10.0.0.1) na interface de rede:
+   9. Nas máquinas SAMBA, NS1 e NS2 ativar o gateway (gateway4: 10.9.24.0) na interface de rede:
 ```bash
 $ sudo nano /etc/netplan/50-cloud-init.yaml
 ```
@@ -164,7 +152,7 @@ network:
     ethernets:
         enp0s3:
             addresses: [10.0.0.11/24]
-            gateway4: 10.0.0.1
+            gateway4: 10.9.24.1
             dhcp4: false
             nameservers:
                 addresses:
@@ -180,33 +168,32 @@ $ sudo netplan apply
 $ ifconfig -a
 ```
 
-  11. Encaminhamento de portas para acesso externo à serviços da rede interna.
+  10. Encaminhamento de portas para acesso externo à serviços da rede interna.
   
-  * Para permitir que o serviço de compartilhamento de arquivos esteja disponível externamente, adicione as informações do IPTABLES sobre portas, IP e Interface no arquivo /etc/rc.local conforme o exemplo abaixo, depois reinicie a máquina:
+  * Para permitir que o serviço de compartilhamento de arquivos esteja disponível externamente, adicione as informações do IPTABLES sobre portas, IP e Interface no arquivo 
+  * /etc/rc.local
+  *  conforme o exemplo abaixo, depois reinicie a máquina:
   
    a. SAMBA: Para permitir que o serviço de compartilhamento de arquivos esteja disponível externamente:
         * Portas: 445 e 139
-        * Interface Externa aqui é a WAN: enp0s3
-        * IP do servidor = 10.0.0.100
         
 ```bash
 #Recebe pacotes na porta 445 da interface externa do gw e encaminha para o servidor interno na porta 445
-iptables -A PREROUTING -t nat -i enp0s3 -p tcp --dport 445 -j DNAT --to 10.0.0.100:445
-iptables -A FORWARD -p tcp -d 10.0.0.100 --dport 445 -j ACCEPT
+iptables -A PREROUTING -t nat -i enp0s3 -p tcp --dport 445 -j DNAT --to 192.168.24.90:445
+iptables -A FORWARD -p tcp -d 192.168.24.90 --dport 445 -j ACCEPT
 
 #Recebe pacotes na porta 139 da interface externa do gw e encaminha para o servidor interno na porta 139
-iptables -A PREROUTING -t nat -i enp0s3 -p tcp --dport 139 -j DNAT --to 10.0.0.100:139
-iptables -A FORWARD -p tcp -d 10.0.0.100 --dport 139 -j ACCEPT
+iptables -A PREROUTING -t nat -i enp0s3 -p tcp --dport 139 -j DNAT --to 192.168.24.90:139
+iptables -A FORWARD -p tcp -d 192.168.24.90 --dport 139 -j ACCEPT
 ```
    b. DNS: Para permitir que o serviço de resolução de nomes (DNS) esteja disponível externamente:
         * Porta: 53
-        * Interface Externa aqui é a WAN: enp0s3
-        * IP do servidor nameserver1 = 10.0.0.10
+        
         
 ```bash
 #Recebe pacotes na porta 53 da interface externa do gw e encaminha para o servidor DNS Master interno na porta 53
-iptables -A PREROUTING -t nat -i enp0s3 -p udp --dport 53 -j DNAT --to 10.0.0.10:53
-iptables -A FORWARD -p udp -d 10.0.0.10 --dport 53 -j ACCEPT
+iptables -A PREROUTING -t nat -i enp0s3 -p udp --dport 53 -j DNAT --to 192.168.24.90:53
+iptables -A FORWARD -p udp -d 192.168.24.90 --dport 53 -j ACCEPT
 ```
 
 
