@@ -2,7 +2,7 @@
 
    * O servidor de gateway pode através do NAT (Network Address Translation) fazer o roteamento todos as maquinas de uma rede interna (Ex.: Rede de MV no Virtualbox) para uma rede externa (Ex. Internet) utilizando somente um endereço de rede de saída. Para isso o NAT reescreve os enderecos da fonte (source address) de todos os pacotes de saída para o endereço da interface externa do gateway.
 
-   * As definições de rede da rede externa ao gateway server estão exemplificadas na Tabela 1.
+   * As definições de rede da rede externa ao gateway server estão na Tabela 1.
 
 <p><center> Tabela 1: Definições da rede externa</center></p>
 
@@ -13,7 +13,7 @@
 | VirtualBox (gateway)     | 10.0.2.2      |
 | Broadcast   | 10.0.2.255    |
 
-   * As definições de rede da rede interna ao gateway server estão exemplificadas na Tabela 2.
+   * As definições de rede da rede interna ao gateway server estão na Tabela 2.
 
 <p><center> Tabela 2: Definições da rede interna</center></p>
 
@@ -50,7 +50,7 @@
  $ sudo ufw status
  
 ```
-   2. Habilite o encaminhamento de pacotes das interfaces WAN para LAN, ajustando-se os parâmetros no arquivo **/etc/ufw/sysctl.conf**, removendo-se a marca de comentário (#) da seguinte linha _# net/ipv4/ip_forwarding=1_
+   2. Habilite o encaminhamento de pacotes das interfaces WAN para LAN, descomentando a seguinte linha _# net/ipv4/ip_forwarding=1_
 
 ```bash
 $ Comando: 
@@ -143,7 +143,7 @@ $ sudo ufw status
 ```bash
 $ sudo reboot
 ```
-   9. Nas máquinas SAMBA, NS1 e NS2 ativar o gateway (gateway4: 10.9.24.0) na interface de rede:
+   9. Nas máquinas SAMBA, NS1 e NS2 ativar o gateway (gateway4: 10.9.24.1) na interface de rede:
 ```bash
 $ sudo nano /etc/netplan/50-cloud-init.yaml
 ```
